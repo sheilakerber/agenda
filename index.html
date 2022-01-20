@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Minha Agenda</title>
+  </head>
+  <body>
+    <header>
+      MINHA AGENDA!
+      <img src="./imgs/contactBook.png" alt="" srcset="" />
+    </header>
+
+    <main>
+      <section id="addAndShowOrHideContacts">
+        <a href="#" onclick="ModalAddContato.open()"> Adicionar contato </a>
+
+        <button onclick="toggleContacts()">Exibir/esconder contatos</button>
+      </section>
+
+      <table id="contactsTable">
+        <thead>
+          <tr class="notFirst" >
+            <th>Nome</th>
+            <th>Endereço</th>
+            <th>Telefone</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </main>
+
+    <!-- MODAL PARA CRIAR NOVO CONTATO -->
+    <div class="modal-overlay-add">
+      <div class="modal-add">
+        <div id="form-add">
+          <h2>Adicionar novo contato</h2>
+          <form action="" onsubmit="Form.submit(event)">
+            <div class="input-field">
+              <label for="name">Nome: </label>
+              <input type="text" name="name" id="name" placeholder="Nome" />
+            </div>
+
+            <div class="input-field">
+              <label for="address">Endereco</label>
+              <input
+                type="text"
+                name="address"
+                id="address"
+                placeholder="Endereço"
+              />
+            </div>
+
+            <div class="input-field">
+              <label for="phone">Telefone: </label>
+              <input
+                type="text"
+                name="phone"
+                id="phone"
+                placeholder="(xx) xxxx-xxxx"
+              />
+            </div>
+
+            <div class="input-field actions">
+              <a
+                href="#"
+                onclick="ModalAddContato.close()"
+                class="button cancel"
+              >
+                Cancelar</a
+              >
+              <button>Salvar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL PARA EDITAR CONTATO -->
+    <div class="modal-overlay-edit">
+      <div class="modal-edit">
+        <div id="form-edit">
+          <h2>Editar contato</h2>
+          <form action="" onsubmit="Form.submit(event)">
+            <div class="input-field">
+              <label for="name">Nome: </label>
+              <input type="text" name="name" id="name" placeholder="Nome" />
+            </div>
+
+            <div class="input-field">
+              <label for="address">Endereco</label>
+              <input
+                type="text"
+                name="address"
+                id="address"
+                placeholder="Endereço"
+              />
+            </div>
+
+            <div class="input-field">
+              <label for="phone">Telefone: </label>
+              <input
+                type="text"
+                name="phone"
+                id="phone"
+                placeholder="(xx) xxxx-xxxx"
+              />
+            </div>
+
+            <div class="input-field actions">
+              <a
+                href="#"
+                onclick="ModalEditContact.close()"
+                class="button cancel"
+              >
+                Cancelar</a
+              >
+              <button>Salvar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="./script.js"></script>
+
+  <footer>
+    <p>
+      Criado por:
+      <a href="https://github.com/sheilakerber" target="blank"> Sheila</a>
+    </p>
+  </footer>
+</html>
