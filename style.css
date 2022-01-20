@@ -1,0 +1,291 @@
+:root {
+  --dark-green: rgb(0, 116, 0);
+  --ligth-green: rgb(184, 226, 184);
+  --lime-green: rgb(2, 167, 2);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Dongle", sans-serif;
+}
+
+body {
+  background-color: rgb(185, 241, 202);
+  padding: 2rem 5rem;
+}
+
+body header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  margin-left: 30%;
+  margin-right: 30%;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--lime-green);
+}
+
+body header img {
+  width: 4rem;
+}
+
+main {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+#contatosSalvos {
+  background-color: var(--ligth-green);
+}
+
+#addAndShowOrHideContacts {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#addAndShowOrHideContacts a {
+  font-size: 2.5rem;
+  text-decoration: none;
+  color: var(--dark-green);
+}
+
+#addAndShowOrHideContacts a:hover {
+  color: var(--lime-green);
+}
+
+#addAndShowOrHideContacts button {
+  font-size: 2rem;
+  width: 30%;
+  border-radius: 1rem;
+  outline: none;
+  border: 1px solid var(--ligth-green);
+  background-color: white;
+  color: var(--dark-green);
+}
+
+#addAndShowOrHideContacts button:hover {
+  background-color: var(--lime-green);
+  color: white;
+  cursor: pointer;
+}
+
+#contactsTable {
+  width: 100%;
+  padding: 0.2rem;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+#contactsTable button {
+  font-size: 1.8rem;
+  width: 80%;
+  border-radius: 0.25rem;
+  border: 1px solid var(--ligth-green);
+  background-color: rgb(234, 245, 234);
+}
+
+#contactsTable button:hover {
+  background-color: var(--ligth-green);
+  color: white;
+  cursor: pointer;
+}
+
+#contactsTable tr:hover {
+  background-color: rgb(247, 242, 242);
+}
+#contactsTable .notFirst:hover {
+  background-color: white;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--dark-green);
+  font-weight: 300;
+}
+
+footer a {
+  text-decoration: none;
+  color: var(--lime-green);
+}
+
+footer a:hover {
+  color: var(--lime-green);
+  font-weight: bold;
+  cursor: pointer;
+}
+/* .
+.
+. */
+/* MODAL ADD CONTATO */
+.modal-overlay-add {
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.7);
+
+  position: fixed;
+  top: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  visibility: hidden;
+  z-index: 99;
+}
+
+.modal-overlay-add.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-add {
+  background: #f0f2f5;
+  padding: 2.4rem;
+  position: relative;
+  z-index: -1;
+  border-radius: 0.25rem;
+}
+
+#form-add {
+  max-width: 500px;
+}
+
+#form-add h2 {
+  margin-top: 0;
+  font-size: 2rem;
+}
+
+.modal-add input {
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.8rem;
+  width: 100%;
+  font-size: 2rem;
+}
+
+.modal-add label {
+  font-size: 2rem;
+}
+
+.modal-add .input-field {
+  margin-top: 0.8rem;
+}
+
+.modal-add .input-field.actions {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.modal-add .input-field.actions a,
+.modal-add .input-field.actions button {
+  width: 50%;
+  font-size: 2rem;
+  color: var(--dark-green);
+  border-radius: 1rem;
+  border: 1px solid var(--ligth-green);
+  text-decoration: none;
+  margin: 0 0.5rem;
+}
+
+.modal-add .input-field.actions a:hover,
+.modal-add .input-field.actions button:hover {
+  color: white;
+  background-color: var(--ligth-green);
+  cursor: pointer;
+}
+/* .
+.
+. */
+/* MODAL EDIT CONTATO */
+.modal-overlay-edit {
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.7);
+
+  position: fixed;
+  top: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  visibility: hidden;
+  z-index: 98;
+}
+
+.modal-overlay-edit.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-edit {
+  background: #f0f2f5;
+  padding: 2.4rem;
+  position: relative;
+  z-index: 1;
+  border-radius: 0.25rem;
+}
+
+#form-edit {
+  max-width: 500px;
+}
+
+#form-edit h2 {
+  margin-top: 0;
+  font-size: 2rem;
+}
+
+.modal-edit input {
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.8rem;
+  width: 100%;
+  font-size: 2rem;
+}
+
+.modal-edit label {
+  font-size: 2rem;
+}
+
+.modal-edit .input-field {
+  margin-top: 0.8rem;
+}
+
+.modal-edit .input-field.actions {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.modal-edit .input-field.actions a,
+.modal-edit .input-field.actions button {
+  width: 50%;
+  font-size: 2rem;
+  color: var(--dark-green);
+  border-radius: 1rem;
+  border: 1px solid var(--ligth-green);
+  text-decoration: none;
+  margin: 0 0.5rem;
+}
+
+.modal-edit .input-field.actions a:hover,
+.modal-edit .input-field.actions button:hover {
+  color: white;
+  background-color: var(--ligth-green);
+  cursor: pointer;
+}
