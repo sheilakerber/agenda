@@ -29,7 +29,7 @@
 
       <table id="contactsTable">
         <thead>
-          <tr class="notFirst" >
+          <tr class="notFirst">
             <th>Nome</th>
             <th>Endereço</th>
             <th>Telefone</th>
@@ -49,7 +49,7 @@
           <form action="" onsubmit="Form.submit(event)">
             <div class="input-field">
               <label for="name">Nome: </label>
-              <input type="text" name="name" id="name" placeholder="Nome" />
+              <input type="text" name="name" id="nameAdd" placeholder="Nome" />
             </div>
 
             <div class="input-field">
@@ -57,7 +57,7 @@
               <input
                 type="text"
                 name="address"
-                id="address"
+                id="addressAdd"
                 placeholder="Endereço"
               />
             </div>
@@ -67,7 +67,7 @@
               <input
                 type="text"
                 name="phone"
-                id="phone"
+                id="phoneAdd"
                 placeholder="(xx) xxxx-xxxx"
               />
             </div>
@@ -92,18 +92,18 @@
       <div class="modal-edit">
         <div id="form-edit">
           <h2>Editar contato</h2>
-          <form action="" onsubmit="Form.submit(event)">
+          <form action="" onsubmit="FormEdit.submit(event)">
             <div class="input-field">
               <label for="name">Nome: </label>
-              <input type="text" name="name" id="name" placeholder="Nome" />
+              <input type="text" name="name" id="nameEdit" placeholder="Nome" />
             </div>
 
             <div class="input-field">
-              <label for="address">Endereco</label>
+              <label for="address">Endereço</label>
               <input
                 type="text"
                 name="address"
-                id="address"
+                id="addressEdit"
                 placeholder="Endereço"
               />
             </div>
@@ -113,7 +113,7 @@
               <input
                 type="text"
                 name="phone"
-                id="phone"
+                id="phoneEdit"
                 placeholder="(xx) xxxx-xxxx"
               />
             </div>
@@ -126,7 +126,7 @@
               >
                 Cancelar</a
               >
-              <button>Salvar</button>
+              <button onclick="Contact.remove(index)">Salvar</button>
             </div>
           </form>
         </div>

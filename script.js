@@ -58,6 +58,11 @@ const Contact = {
     ModalEditContact.open();
 
     const table = document.getElementById("contactsTable");
+    const rowItems = table.rows.item(index + 1).cells;
+
+    document.getElementById("nameEdit").value = rowItems.item(0).innerHTML;
+    document.getElementById("addressEdit").value = rowItems.item(1).innerHTML;
+    document.getElementById("phoneEdit").value = rowItems.item(2).innerHTML;
 
     App.reload();
   },
@@ -88,6 +93,45 @@ const DOM = {
       </td>
     `;
     return html;
+  },
+};
+
+// editando os elementos html da tabela contatos
+const FormEdit = {
+  name: document.querySelector("input#nameEdit"),
+  address: document.querySelector("input#addressEdit"),
+  phone: document.querySelector("input#phoneEdit"),
+
+  getValues() {
+    return {
+      name: FormEdit.name.value,
+      address: FormEdit.address.value,
+      phone: FormEdit.phone.value,
+    };
+  },
+
+  validateInputs() {
+    const { name, address, phone } = FormEdit.getValues();
+
+    if (name.trim() === "" || address.trim() === "" || phone.trim() == "") {
+      throw new Error("Por favor, preencha todos os campos.");
+    } else {
+      return name, address, phone;
+    }
+  },
+
+  submit(event) {
+    event.preventDefault();
+
+    try {
+      FormEdit.validateInputs();
+      const contact = FormEdit.getValues();
+      Contact.remove();
+      Contact.add(contact);
+      ModalEditContact.close();
+    } catch (error) {
+      alert(error.message);
+    }
   },
 };
 
