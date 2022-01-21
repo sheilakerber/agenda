@@ -56,12 +56,23 @@
             </div>
 
             <div class="input-field">
-              <label for="address">Endereco</label>
+              <label for="address">Endereço</label>
               <input
                 type="text"
                 name="address"
                 id="addressAdd"
-                placeholder="Endereço"
+                placeholder="Cidade - UF"
+              />
+              <section class="cep-search-class">
+                <p>Pesquise pelo CEP:</p>
+                <button type="button" onclick="Form.getCep()">Pesquisar</button>
+              </section>
+              <input
+                type="text"
+                name="cepAdd"
+                id="cepAdd"
+                maxlength="9"
+                placeholder="somente números"
               />
             </div>
 
@@ -108,6 +119,17 @@
                 name="address"
                 id="addressEdit"
                 placeholder="Endereço"
+              />
+              <section class="cep-search-class">
+                <p>Pesquise pelo CEP:</p>
+                <button type="button" onclick="Form.getCep()">Pesquisar</button>
+              </section>
+              <input
+                type="text"
+                name="cepEdit"
+                id="cepEdit"
+                maxlength="9"
+                placeholder="somente números"
               />
             </div>
 
