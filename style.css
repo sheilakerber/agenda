@@ -22,7 +22,7 @@ body header {
   padding: 0.5rem;
   margin-left: 30%;
   margin-right: 30%;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: bold;
   color: var(--lime-green);
 }
@@ -34,7 +34,13 @@ body header img {
 main {
   background-color: white;
   padding: 2rem;
-  border-radius: 1rem;
+  border-radius: 0 0 1rem 1rem;
+  box-shadow: 0 2px 2px rgba(28, 194, 102, 0.034),
+    0 6.7px 5.3px rgba(100, 99, 99, 0.048),
+    0 12.5px 10px rgba(143, 141, 141, 0.06),
+    0 22.3px 17.9px rgba(97, 96, 96, 0.072),
+    0 41.8px 33.4px rgba(199, 195, 195, 0.086),
+    0 100px 80px rgba(151, 149, 149, 0.12);
 }
 
 #contatosSalvos {
@@ -45,12 +51,15 @@ main {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  padding: 1rem;
+  background-color: var(--ligth-green);
+  border-radius: 0 0 1rem 1rem;
 }
 
 #addAndShowOrHideContacts a {
-  font-size: 2.5rem;
+  font-size: 2rem;
   text-decoration: none;
-  color: var(--dark-green);
+  color: white;
 }
 
 #addAndShowOrHideContacts a:hover {
@@ -58,13 +67,14 @@ main {
 }
 
 #addAndShowOrHideContacts button {
-  font-size: 2rem;
+  font-size: 1.5rem;
   width: 30%;
   border-radius: 1rem;
   outline: none;
   border: 1px solid var(--ligth-green);
   background-color: white;
   color: var(--dark-green);
+  padding: 0.25rem;
 }
 
 #addAndShowOrHideContacts button:hover {
@@ -77,11 +87,13 @@ main {
   width: 100%;
   padding: 0.2rem;
   text-align: center;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
 }
 
 #contactsTable button {
-  font-size: 1.8rem;
+  font-size: 1rem;
+  padding: 0.25rem;
+  font-weight: 300;
   width: 80%;
   border-radius: 0.25rem;
   border: 1px solid var(--ligth-green);
@@ -104,9 +116,10 @@ main {
 footer {
   display: flex;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: var(--dark-green);
   font-weight: 300;
+  margin-top: 3rem;
 }
 
 footer a {
@@ -160,7 +173,7 @@ footer a:hover {
 
 #form-add h2 {
   margin-top: 0;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .modal-add input {
@@ -168,15 +181,51 @@ footer a:hover {
   border-radius: 0.2rem;
   padding: 0.8rem;
   width: 100%;
-  font-size: 2rem;
+  font-size: 1rem;
 }
 
 .modal-add label {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .modal-add .input-field {
-  margin-top: 0.8rem;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
+
+.cep-search-class {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#form-add .cep-search-class p {
+  font-size: 1rem;
+}
+
+.cep-search-class button {
+  width: 50%;
+  font-size: 1.4rem;
+  color: var(--dark-green);
+  border-radius: 1rem;
+  border: 1px solid var(--ligth-green);
+  text-decoration: none;
+  margin: 0.5rem;
+  padding: 0.25rem;
+}
+
+.modal-add .input-field p {
+  font-size: 1.5rem;
+  text-align: right;
+  color: var(--lime-green);
+}
+
+#form-add #cepAdd {
+  font-size: 1rem;
+  height: 2rem;
+  text-align: center;
+  border: 1px solid var(--ligth-green);
+  outline: none;
 }
 
 .modal-add .input-field.actions {
@@ -184,22 +233,24 @@ footer a:hover {
   justify-content: space-around;
   align-items: center;
   text-align: center;
-  font-size: 2rem;
 }
 
 .modal-add .input-field.actions a,
 .modal-add .input-field.actions button {
   width: 50%;
-  font-size: 2rem;
+  font-size: 1.5rem;
+  padding: 0.5rem;
   color: var(--dark-green);
   border-radius: 1rem;
   border: 1px solid var(--ligth-green);
   text-decoration: none;
   margin: 0 0.5rem;
+  margin-top: 1rem;
 }
 
 .modal-add .input-field.actions a:hover,
-.modal-add .input-field.actions button:hover {
+.modal-add .input-field.actions button:hover,
+.cep-search-class button:hover {
   color: white;
   background-color: var(--ligth-green);
   cursor: pointer;
@@ -245,7 +296,7 @@ footer a:hover {
 
 #form-edit h2 {
   margin-top: 0;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .modal-edit input {
@@ -253,15 +304,34 @@ footer a:hover {
   border-radius: 0.2rem;
   padding: 0.8rem;
   width: 100%;
-  font-size: 2rem;
+  font-size: 1rem;
 }
 
 .modal-edit label {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .modal-edit .input-field {
-  margin-top: 0.8rem;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
+
+#form-edit .cep-search-class p {
+  font-size: 1rem;
+}
+
+.modal-edit .input-field p {
+  font-size: 1.5rem;
+  text-align: right;
+  color: var(--lime-green);
+}
+
+#form-edit #cepEdit {
+  font-size: 1rem;
+  height: 2rem;
+  text-align: center;
+  border: 1px solid var(--ligth-green);
+  outline: none;
 }
 
 .modal-edit .input-field.actions {
@@ -269,18 +339,19 @@ footer a:hover {
   justify-content: space-around;
   align-items: center;
   text-align: center;
-  font-size: 2rem;
 }
 
 .modal-edit .input-field.actions a,
 .modal-edit .input-field.actions button {
   width: 50%;
-  font-size: 2rem;
+  font-size: 1.5rem;
+  padding: 0.5rem;
   color: var(--dark-green);
   border-radius: 1rem;
   border: 1px solid var(--ligth-green);
   text-decoration: none;
   margin: 0 0.5rem;
+  margin-top: 1rem;
 }
 
 .modal-edit .input-field.actions a:hover,
