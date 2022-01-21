@@ -126,7 +126,7 @@ const FormEdit = {
     try {
       FormEdit.validateInputs();
       const contact = FormEdit.getValues();
-      Contact.remove();
+      Contact.remove(contact);
       Contact.add(contact);
       ModalEditContact.close();
     } catch (error) {
