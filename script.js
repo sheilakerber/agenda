@@ -1,9 +1,11 @@
 //  esconder/mostrar os contatos salvos
 function toggleContacts() {
   const contactsData = document.getElementById("contactsTable");
-  contactsData.style.display === "none"
-    ? (contactsData.style.display = "")
-    : (contactsData.style.display = "none");
+  if (contactsData.style.display === "none") {
+    contactsData.style.display = "";
+  } else {
+    contactsData.style.display = "none";
+  }
 }
 
 // abrir/fechar o modal de add de novo contato
