@@ -145,7 +145,7 @@ const Form = {
   updateAddress(cepAddress) {
     document.querySelector(
       "input#addressAdd"
-    ).value = `${cepAddress.localidade} - ${cepAddress.uf}`;
+    ).value = `${cepAddress.logradouro}, ${cepAddress.localidade} - ${cepAddress.uf}`;
   },
 
   getValues() {
