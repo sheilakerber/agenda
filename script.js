@@ -109,14 +109,37 @@ const DOM = {
 const FormEdit = {
   name: document.querySelector("input#nameEdit"),
   address: document.querySelector("input#addressEdit"),
+  cep: document.querySelector("input#cepEdit"),
   phone: document.querySelector("input#phoneEdit"),
+
+  updateAddress(cepAddress) {
+    document.querySelector(
+      "input#addressEdit"
+    ).value = `${cepAddress.logradouro}, ${cepAddress.localidade} - ${cepAddress.uf}`;
+  },
 
   getValues() {
     return {
       name: FormEdit.name.value,
       address: FormEdit.address.value,
+      cep: FormEdit.cep.value,
       phone: FormEdit.phone.value,
     };
+  },
+
+  async getCep() {
+    const { cep } = FormEdit.getValues();
+    const url = `http://viacep.com.br/ws/${cep}/json/`;
+
+    if (cep) {
+      const cepData = await fetch(url);
+      const cepAddress = await cepData.json();
+      if (cepAddress.hasOwnProperty("erro")) {
+        return alert("[Erro] Cep não encontrado.");
+      } else {
+        FormEdit.updateAddress(cepAddress);
+      }
+    }
   },
 
   validateInputs() {
@@ -196,6 +219,7 @@ const FormAdd = {
     FormAdd.name.value = "";
     FormAdd.address.value = "";
     FormAdd.phone.value = "";
+    FormAdd.cep.value = "";
   },
 
   submit(event) {
