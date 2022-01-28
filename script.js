@@ -32,7 +32,12 @@ const ModalEditContact = {
 const Storage = {
   // pegando os dados ja salvos
   get() {
-    return JSON.parse(localStorage.getItem("storage:savedContacts")) || [];
+    const stringContacts = localStorage.getItem("storage:savedContacts");
+    if (stringContacts) {
+      return JSON.parse(stringContacts);
+    } else {
+      return [];
+    }
   },
 
   // salvando/atualizando dados
@@ -48,48 +53,52 @@ const Contact = {
 
   add(contact) {
     Contact.all.push(contact);
-    App.reload();
+    Storage.set(Contact.all);
+    DOM.reload();
   },
-  remove(index) {
-    Contact.all.splice(index, 1);
-    App.reload();
+  remove(id) {
+    const newContacts = Contact.all.filter((c) => c.id !== id);
+    Contact.all = newContacts;
+    Storage.set(newContacts);
+    DOM.reload();
   },
-  edit(index) {
+  edit(id) {
     ModalEditContact.open();
+    Contact.currentIdEdit = id;
+    const contact = Contact.all.filter((c) => c.id === id);
 
-    const table = document.getElementById("contactsTable");
-    const rowItems = table.rows.item(index + 1).cells;
-
-    document.getElementById("nameEdit").value = rowItems.item(0).innerHTML;
-    document.getElementById("addressEdit").value = rowItems.item(1).innerHTML;
-    document.getElementById("phoneEdit").value = rowItems.item(2).innerHTML;
-
-    App.reload();
+    document.getElementById("nameEdit").value = contact[0].name;
+    document.getElementById("addressEdit").value = contact[0].address;
+    document.getElementById("phoneEdit").value = contact[0].phone;
   },
+  currentIdEdit: undefined,
 };
 
 // adicionando os elementos html da tabela contatos
 const DOM = {
   contactsContainer: document.querySelector("#contactsTable tbody"),
 
-  addContact(contact, index) {
-    const tr = document.createElement("tr");
-    tr.innerHTML = DOM.innerHtmlContact(contact, index);
-    tr.dataset.index = index;
-    DOM.contactsContainer.appendChild(tr);
+  reload() {
+    DOM.contactsContainer.innerHTML = "";
+    Contact.all.forEach((contact, index) => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = DOM.innerHtmlContact(contact, index);
+      tr.dataset.index = index;
+      DOM.contactsContainer.appendChild(tr);
+    });
   },
 
   // passando os valores de cada contato para o html
-  innerHtmlContact(contact, index) {
+  innerHtmlContact(contact) {
     const html = `
       <td class="name">${contact.name}</td>
       <td class="address">${contact.address}</td>
       <td class="phone">${contact.phone}</td>
       <td>
-        <button onclick="Contact.edit(${index})"> EDITAR </button>
+        <button onclick="Contact.edit(${contact.id})"> EDITAR </button>
       </td>
       <td>
-        <button onclick="Contact.remove(${index})" >EXCLUIR </button>
+        <button onclick="Contact.remove(${contact.id})" > EXCLUIR </button>
       </td>
     `;
     return html;
@@ -125,9 +134,10 @@ const FormEdit = {
 
     try {
       FormEdit.validateInputs();
-      const contact = FormEdit.getValues();
-      Contact.remove(contact);
-      Contact.add(contact);
+      Contact.remove(Contact.currentIdEdit);
+      const newContact = FormEdit.getValues();
+      newContact.id = Contact.currentIdEdit;
+      Contact.add(newContact);
       ModalEditContact.close();
     } catch (error) {
       alert(error.message);
@@ -136,7 +146,7 @@ const FormEdit = {
 };
 
 // form de adicao de novo contato
-const Form = {
+const FormAdd = {
   name: document.querySelector("input#nameAdd"),
   address: document.querySelector("input#addressAdd"),
   cep: document.querySelector("input#cepAdd"),
@@ -150,15 +160,15 @@ const Form = {
 
   getValues() {
     return {
-      name: Form.name.value,
-      address: Form.address.value,
-      cep: Form.cep.value,
-      phone: Form.phone.value,
+      name: FormAdd.name.value,
+      address: FormAdd.address.value,
+      cep: FormAdd.cep.value,
+      phone: FormAdd.phone.value,
     };
   },
 
   async getCep() {
-    const { cep } = Form.getValues();
+    const { cep } = FormAdd.getValues();
     const url = `http://viacep.com.br/ws/${cep}/json/`;
 
     if (cep) {
@@ -167,13 +177,13 @@ const Form = {
       if (cepAddress.hasOwnProperty("erro")) {
         return alert("[Erro] Cep não encontrado.");
       } else {
-        Form.updateAddress(cepAddress);
+        FormAdd.updateAddress(cepAddress);
       }
     }
   },
 
   validateInputs() {
-    const { name, address, phone } = Form.getValues();
+    const { name, address, phone } = FormAdd.getValues();
 
     if (name.trim() === "" || address.trim() === "" || phone.trim() == "") {
       throw new Error("Por favor, preencha todos os campos.");
@@ -183,19 +193,20 @@ const Form = {
   },
 
   clearInputs() {
-    Form.name.value = "";
-    Form.address.value = "";
-    Form.phone.value = "";
+    FormAdd.name.value = "";
+    FormAdd.address.value = "";
+    FormAdd.phone.value = "";
   },
 
   submit(event) {
     event.preventDefault();
 
     try {
-      Form.validateInputs();
-      const contact = Form.getValues();
+      FormAdd.validateInputs();
+      const contact = FormAdd.getValues();
+      contact.id = Math.floor(Math.random() * 1000);
       Contact.add(contact);
-      Form.clearInputs();
+      FormAdd.clearInputs();
       ModalAddContato.close();
     } catch (error) {
       alert(error.message);
@@ -203,18 +214,4 @@ const Form = {
   },
 };
 
-// obj para as funcionalidades de iniciacao e reload da aplicacao
-const App = {
-  init() {
-    Contact.all.forEach((contact, index) => {
-      DOM.addContact(contact, index);
-    });
-    Storage.set(Contact.all);
-  },
-  reload() {
-    DOM.contactsContainer.innerHTML = "";
-    App.init();
-  },
-};
-
-App.init();
+DOM.reload();
