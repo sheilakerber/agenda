@@ -72,10 +72,11 @@
                 </button>
               </section>
               <input
-                type="text"
+                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                type="number"
                 name="cepAdd"
                 id="cepAdd"
-                maxlength="9"
+                maxlength="8"
                 placeholder="somente números"
               />
             </div>
@@ -131,10 +132,11 @@
                 </button>
               </section>
               <input
-                type="text"
+                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                type="number"
                 name="cepEdit"
                 id="cepEdit"
-                maxlength="9"
+                maxlength="8"
                 placeholder="somente números"
               />
             </div>
