@@ -19,6 +19,7 @@ body {
 body header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 0.5rem;
   margin-left: 30%;
   margin-right: 30%;
@@ -54,16 +55,6 @@ main {
   padding: 1rem;
   background-color: var(--ligth-green);
   border-radius: 0 0 1rem 1rem;
-}
-
-#addAndShowOrHideContacts a {
-  font-size: 2rem;
-  text-decoration: none;
-  color: white;
-}
-
-#addAndShowOrHideContacts a:hover {
-  color: var(--lime-green);
 }
 
 #addAndShowOrHideContacts button {
