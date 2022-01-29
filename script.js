@@ -131,14 +131,14 @@ const FormEdit = {
     const { cep } = FormEdit.getValues();
     const url = `http://viacep.com.br/ws/${cep}/json/`;
 
-    if (cep) {
-      const cepData = await fetch(url);
-      const cepAddress = await cepData.json();
-      if (cepAddress.hasOwnProperty("erro")) {
-        return alert("[Erro] Cep não encontrado.");
-      } else {
+    try {
+      if (cep) {
+        const cepData = await fetch(url);
+        const cepAddress = await cepData.json();
         FormEdit.updateAddress(cepAddress);
       }
+    } catch {
+      alert("CEP não encontrado!");
     }
   },
 
@@ -194,14 +194,14 @@ const FormAdd = {
     const { cep } = FormAdd.getValues();
     const url = `http://viacep.com.br/ws/${cep}/json/`;
 
-    if (cep) {
-      const cepData = await fetch(url);
-      const cepAddress = await cepData.json();
-      if (cepAddress.hasOwnProperty("erro")) {
-        return alert("[Erro] Cep não encontrado.");
-      } else {
+    try {
+      if (cep) {
+        const cepData = await fetch(url);
+        const cepAddress = await cepData.json();
         FormAdd.updateAddress(cepAddress);
       }
+    } catch {
+      alert("CEP não encontrado!");
     }
   },
 
